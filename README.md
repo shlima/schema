@@ -11,7 +11,44 @@ yarn add @shlima/schema
 
 ## Example (Vue2)
 
-```bash
-impoet Schema from "shlima/schema"
+```js
+import Schema from "shlima/schema"
 
+const schema = new Schema({
+  filter: {
+    user_ids: {
+      type: [Number]
+    },
+    
+    status: {
+      type: String,
+      default: 'all'
+    },
+    
+    active: {
+      type: Boolean,
+      default: false
+    },
+    
+    users: {
+      type: [function(val) { return val }]
+    },
+    
+    some: {
+      long: {
+        nested: {
+          param: {
+            type: String
+          }
+        }
+      }
+    }
+  }
+})
+
+export default {
+  data() {
+    return schema.coerce(this.$route.query)
+  }
+}
 ```
