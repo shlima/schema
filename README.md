@@ -3,8 +3,15 @@
 I have made this npm package to coerce/type cast values comes from URI query
 
 
-## Example
+## Install
 
-```js
+```bash
+yarn add @shlima/schema
+```
+
+## Example (Vue2)
+
+```bash
+impoet Schema from "shlima/schema"
 
 ```

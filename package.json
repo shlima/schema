@@ -1,10 +1,10 @@
 {
   "name": "@shlima/schema",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "author": "Aliaksandr Shylau",
   "license": "MIT",
-  "homepage": "https://github.com/shlima/schema.js",
+  "homepage": "https://github.com/shlima/schema",
   "scripts": {
     "test": "mocha"
   },
