@@ -1,5 +1,5 @@
 const _forEach = require('lodash/forEach');
-const _bind = require('lodash/bind');
+const _isUndefined = require('lodash/isUndefined');
 const _isPlainObject = require('lodash/isPlainObject');
 
 const Definition = require('./definition')
@@ -37,7 +37,6 @@ class Schema {
    *  * object is { filter: { user: { ids: [1,2,3], state: "Active" } } }
    */
   coerce(request, definitions = this.definitions) {
-    request = request || {};
     const response = {};
 
     if (this.isDef(definitions)) {
@@ -45,16 +44,16 @@ class Schema {
     }
 
     _forEach(definitions, (def, key) => {
-        const body = request[key];
+        const body = (request || {})[key];
 
         if (this.isDef(def)) {
           response[key] = this.cast(body, def);
-          if (!response[key]) delete response[key]
+          if (_isUndefined(response[key])) delete response[key]
         }
 
         if (_isPlainObject(def)) {
           response[key] = this.coerce(body, def);
-          if (!response[key]) delete response[key]
+          if (_isUndefined(response[key])) delete response[key]
         }
     });
 
