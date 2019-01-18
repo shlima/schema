@@ -1,4 +1,4 @@
-const Schema = require('../index');
+const Schema = require('../src/Schema');
 const assert = require('chai').assert;
 
 describe("Flat", function() {
@@ -62,3 +62,32 @@ describe("Array with default", function() {
     assert.deepEqual(schema.coerce({}), { foo: [-1] });
   });
 });
+
+describe("Schema", function() {
+  const schema = new Schema({
+    foo: {
+      type: new Schema({ id: { type: Number } }),
+      default: { id: -1 }
+    }
+  });
+
+  it('returns default value if nothing set', function() {
+    assert.deepEqual(schema.coerce({ foo: { id: '1'} }), { foo: {id: 1} });
+    assert.deepEqual(schema.coerce({}),  { foo: {id: -1} });
+  });
+});
+
+describe("Schema with Default", function() {
+  const schema = new Schema({
+    foo: {
+      type: new Schema({ id: { type: Number, default: 0 } }),
+      default: { id: -1 }
+    }
+  });
+
+  it('returns default value if nothing set', function() {
+    assert.deepEqual(schema.coerce({ foo: { id: '1'} }), { foo: {id: 1} });
+    assert.deepEqual(schema.coerce({}),  { foo: {id: 0} });
+  });
+});
+

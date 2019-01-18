@@ -1,4 +1,4 @@
-const Schema = require('../index');
+const Schema = require('../src/Schema');
 const assert = require('chai').assert;
 
 describe('', function() {

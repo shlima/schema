@@ -1,9 +1,9 @@
-const TypeCast = require('../TypeCast');
+const TypeCast = require('../src/TypeCast');
 const assert = require('chai').assert;
 
 describe("Number", function() {
   function cast(value) {
-    return TypeCast.cast(value, 'Number');
+    return TypeCast.cast(Number, value);
   }
 
   it('works', function() {
@@ -23,7 +23,7 @@ describe("Number", function() {
 
 describe("String", function() {
   function cast(value) {
-    return TypeCast.cast(value, 'String');
+    return TypeCast.cast(String, value);
   }
 
   it('works', function() {
@@ -40,7 +40,7 @@ describe("String", function() {
 
 describe("Boolean", function() {
   function cast(value) {
-    return TypeCast.cast(value, 'Boolean');
+    return TypeCast.cast(Boolean, value);
   }
 
   it('works', function() {
