@@ -49,6 +49,19 @@ describe("Array", function() {
   });
 });
 
+describe("Array when not an array", function() {
+  const schema = new Schema({
+    foo: {
+      type: [Number]
+    }
+  });
+
+  it('cast value to an array', function() {
+    assert.deepEqual(schema.coerce({ foo: '123' }),  { foo: [123] });
+    assert.deepEqual(schema.coerce({}), {});
+  });
+});
+
 describe("Array with default", function() {
   const schema = new Schema({
     foo: {

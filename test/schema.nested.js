@@ -57,7 +57,6 @@ describe("Nested Array Of Array type", function() {
   });
 
   it('works', function() {
-
     assert.deepEqual(schema.coerce({ foo: {bar: {baz: [{ ids: [0, ''] }]}} }), { foo: {bar: {baz: [{ ids: [0] }]}} });
     assert.deepEqual(schema.coerce({}), { foo: {bar: {baz: ['schema']}} });
   });

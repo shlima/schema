@@ -3,6 +3,7 @@ const _isFunction = require('lodash/isFunction');
 const _get = require('lodash/get');
 const _map = require('lodash/map');
 const _reject = require('lodash/reject');
+const _castArray = require('lodash/castArray');
 const TypeCast = require('./TypeCast');
 
 class Definition {
@@ -24,7 +25,8 @@ class Definition {
 
   coerce(value) {
     if (this.isArray) {
-      const result = _reject(_map(value, (el) => { return this.cast(el) }), this.isBlank);
+      if (!value) return null;
+      const result = _reject(_map(_castArray(value), (el) => { return this.cast(el) }), this.isBlank);
       return result.length ? result : null
     } else {
       return this.cast(value)
